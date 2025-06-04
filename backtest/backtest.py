@@ -4,10 +4,18 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import main
 
-# Define the pairs trading strategy function
+''' 
+The calculate_metrics function evaluates a trading strategy's performance on a given price dataset. 
+It calculates percentage price changes, applies a model (from main.models) to generate trading signals 
+based on a specified window, and determines long (+1) or short (-1) positions using thresholds (thres1, thres2). 
+The function computes profits/losses (pnl), accounting for trading costs (0.06% per trades), 
+and tracks cumulative profits (cumu_pnl) and drawdowns (dd). It returns a DataFrame with these metrics and a 
+dictionary containing key performance indicators: Sharpe Ratio(SR), Maximum Drawdown(MDD), Annualized Return (AR), 
+Calmar Ratio (AR/MDD), total trades, and Trades Per Instance (TPI).
+'''
 def calculate_metrics(df, window, thres1, thres2):
     df = pd.DataFrame(df.copy())
-    df['close_chg'] = df['close'].pct_change()  # Percentage change on prices
+    df['close_chg'] = df['close'].pct_change()  
     df['model'] = main.models(df, window)
     df['pos'] = np.where(df['model'] > thres1, 1, np.where(df['model'] < thres2, -1, np.nan))
     df['pos'] = df['pos'].ffill()
@@ -40,6 +48,11 @@ def calculate_metrics(df, window, thres1, thres2):
 
     return df, metrics
 
+'''
+The plot_equity_curve function help to show equity curve in a line chart from backtest result.
+The backtest will include in sample and out sample price. (train-test split/forward test) 
+When forward test == 'yes' and test_df (out sample) is not None, equity curve will be plotted.
+'''
 def plot_equity_curve(train_df, test_df=None, forward_test='no'):
     plt.figure(figsize=(10, 6))
     if 'cumu_pnl' not in train_df.columns:
