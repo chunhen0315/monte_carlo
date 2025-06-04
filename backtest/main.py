@@ -65,6 +65,8 @@ if __name__ == '__main__':
         print("\nMonte Carlo Simulation Summary Statistics:")
         print(metrics_df.describe())
 
+        monte_carlo.check_mdd_percentiles(metrics_df)
+
         # Plot distributions of metrics
         monte_carlo.plot_metrics_distribution(metrics_df)
 
