@@ -76,3 +76,12 @@ def plot_sample_equity_curves(equity_curves, num_samples=10):
     plt.savefig('monte_carlo.png')
     plt.show()
 
+
+def check_mdd_percentiles(metrics_df, percentiles=[90, 95, 99]):
+    mdd = metrics_df['MDD'].dropna()
+    percentile_values = np.percentile(mdd, percentiles)
+    
+    print("MDD Percentiles:")
+    for p, value in zip(percentiles, percentile_values):
+        print(f"{p}th percentile MDD: {value:.4f}")
+
