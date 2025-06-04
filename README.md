@@ -1,19 +1,20 @@
-# monte_carlo
+# Monte Carlo
 
-This is a trading backtesting project include several procedure to assess stability and robustness of trading strategy. 
+This is a backtesting project using Monte Carlo Simulation to assess stability and robustness of trading strategy. 
 
-main.py:
-This is the main code to perform all action included backtest, forward test, permutaiton and monte carlo simulation. 
 
-backtesy.py:
-this is the backtest function for position and metrics calculation, such as Sharpe Ratio, Max Drawdown, Annualized Return and Calmar Ratio. 
+1. main.py:
+This is the main code to perform action included data preprocessing, backtest, forward test, permutaiton and monte carlo simulation. 
+
+2. backtesy.py:
+This is the backtest function for position and metrics calculation, such as Sharpe Ratio, Max Drawdown, Annualized Return and Calmar Ratio. 
 It also allow to perform train-test split (forward test) when forward_test = 'yes' in main.py
 
-model.py:
-This is all the model calculation behind. 
+3. model.py:
+This is all the model calculation such as Z-score, Minmax Scaling, Robust Scaling and more. 
 
-monte_carlo.py:
-This is monte carlo simulation to help estimate the risk and profitability of trading strategy by randomized price data. 
+4. monte_carlo.py:
+This is monte carlo function to help examine the risk and profitability of trading strategy by randomized the price data. 
 
-permuation.py:
+5. permuation.py:
 This is permutation to help optimized parameters for our trading strategy.
