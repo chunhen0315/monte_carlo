@@ -18,3 +18,6 @@ This is monte carlo function to help examine the risk and profitability of tradi
 
 5. permuation.py:
 This is permutation to help optimized parameters for our trading strategy.
+
+![monte_carlo](https://github.com/user-attachments/assets/58e96b3f-7d7b-4956-8801-18f6937deeaf)
+
